@@ -1,7 +1,7 @@
 
          ,--.
        ,--.'|
-   ,--,:  : |                                           Nacos ${application.version}
+   ,--,:  : |                                           Bonree Nacos ${application.version}
 ,`--.'`|  ' :                       ,---.               Running in ${nacos.mode} mode, ${nacos.function.mode} function modules
 |   :  :  | |                      '   ,'\   .--.--.    Port: ${server.port}
 :   |   \ | :  ,--.--.     ,---.  /   /   | /  /    '   Pid: ${pid}
