@@ -37,6 +37,7 @@ public class ServerStateController {
     @GetMapping("/state")
     public ResponseEntity serverState() {
         Map<String,String> serverState = new HashMap<>(3);
+        // 读取JVM参数[-Dnacos.standalone=true]判断是单机模式启动还是集群模式启动
         serverState.put("standalone_mode",SystemUtils.STANDALONE_MODE ?
             SystemUtils.STANDALONE_MODE_ALONE : SystemUtils.STANDALONE_MODE_CLUSTER);
 
