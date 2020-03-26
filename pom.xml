@@ -443,7 +443,7 @@
         <module>console</module>
         <module>cmdb</module>
         <module>istio</module>
-        <module>gateway</module>
+        <module>zuul</module>
     </modules>
 
     <!-- 所有的子项目默认依赖 -->
@@ -534,6 +534,12 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>nacos-istio</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>nacos-zuul</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

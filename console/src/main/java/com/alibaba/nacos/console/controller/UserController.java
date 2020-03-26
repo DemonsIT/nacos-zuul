@@ -207,7 +207,7 @@ public class UserController {
     public RestResult<String> updatePassword(@RequestParam(value = "oldPassword") String oldPassword,
                                              @RequestParam(value = "newPassword") String newPassword) {
 
-        RestResult<String> rr = new RestResult<String>();
+        RestResult<String> rr = new RestResult<>();
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = ((UserDetails) principal).getUsername();
         User user = userDetailsService.getUserFromDatabase(username);
