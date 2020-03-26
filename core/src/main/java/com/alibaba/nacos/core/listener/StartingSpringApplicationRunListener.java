@@ -137,6 +137,7 @@ public class StartingSpringApplicationRunListener implements SpringApplicationRu
     }
 
     private void logClusterConf() {
+        System.out.println("logClusterConf() start...");
         if (!STANDALONE_MODE) {
             try {
                 List<String> clusterConf = readClusterConf();
@@ -155,6 +156,7 @@ public class StartingSpringApplicationRunListener implements SpringApplicationRu
     }
 
     private void logStarting() {
+        System.out.println("logStarting() start...");
         if (!STANDALONE_MODE) {
 
             scheduledExecutorService = new ScheduledThreadPoolExecutor(1, new ThreadFactory() {
@@ -166,12 +168,9 @@ public class StartingSpringApplicationRunListener implements SpringApplicationRu
                 }
             });
 
-            scheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
-                @Override
-                public void run() {
-                    if (starting) {
-                        LOGGER.info("Nacos is starting...");
-                    }
+            scheduledExecutorService.scheduleWithFixedDelay(() -> {
+                if (starting) {
+                    LOGGER.info("Nacos is starting...");
                 }
             }, 1, 1, TimeUnit.SECONDS);
         }

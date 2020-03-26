@@ -35,7 +35,7 @@ import static org.apache.commons.lang3.CharEncoding.UTF_8;
  * @author nacos
  */
 public class SystemUtils {
-
+    
     /**
      * Standalone mode or not
      */
