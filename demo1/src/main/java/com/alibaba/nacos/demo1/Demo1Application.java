@@ -1,17 +1,15 @@
-package com.bonree.zuul;
+package com.alibaba.nacos.demo1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
-/**
- * 集成zuul
- * @author Bonree
- */
 @SpringBootApplication
 @EnableZuulProxy
-public class ZuulApplication {
+public class Demo1Application {
+    
     public static void main(String[] args) {
-        SpringApplication.run(ZuulApplication.class, args);
+        SpringApplication.run(Demo1Application.class, args);
     }
+    
 }
