@@ -52,7 +52,7 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.alibaba.nacos.First</mainClass>
+                                    <mainClass>com.alibaba.nacos.ProviderApplication</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

@@ -48,7 +48,7 @@
               </filters>
               <transformers>
                 <transformer>
-                  <mainClass>com.alibaba.nacos.First</mainClass>
+                  <mainClass>com.alibaba.nacos.ProviderApplication</mainClass>
                 </transformer>
               </transformers>
             </configuration>

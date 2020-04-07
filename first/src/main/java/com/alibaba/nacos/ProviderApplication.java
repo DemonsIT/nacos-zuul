@@ -9,8 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Desc:
  */
 @SpringBootApplication
-public class First {
+public class ProviderApplication {
     public static void main(String[] args) {
-        SpringApplication.run(First.class, args);
+        SpringApplication.run(ProviderApplication.class, args);
     }
 }
