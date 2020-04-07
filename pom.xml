@@ -443,18 +443,16 @@
         <module>console</module>
         <module>cmdb</module>
         <module>istio</module>
-        <module>zuul</module>
+        <module>first</module>
     </modules>
 
     <!-- 所有的子项目默认依赖 -->
     <dependencies>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <!-- 管理依赖版本号,子项目不会默认依赖 -->
@@ -534,12 +532,6 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>nacos-istio</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>nacos-zuul</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

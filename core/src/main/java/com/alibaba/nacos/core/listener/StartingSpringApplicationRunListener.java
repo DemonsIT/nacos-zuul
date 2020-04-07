@@ -101,6 +101,7 @@ public class StartingSpringApplicationRunListener implements SpringApplicationRu
 
     @Override
     public void started(ConfigurableApplicationContext context) {
+        System.out.println("started method, set to false!");
         starting = false;
 
         if (scheduledExecutorService != null) {

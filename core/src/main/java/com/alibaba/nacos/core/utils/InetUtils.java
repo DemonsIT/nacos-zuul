@@ -73,14 +73,13 @@ public class InetUtils {
         }
 
         selfIp = nacosIp;
-
         if (StringUtils.isBlank(selfIp)) {
             preferHostnameOverIp = Boolean.getBoolean(SYSTEM_PREFER_HOSTNAME_OVER_IP);
-
+    
             if (!preferHostnameOverIp) {
                 preferHostnameOverIp = Boolean.parseBoolean(PropertyUtil.getProperty(PREFER_HOSTNAME_OVER_IP));
             }
-
+    
             if (preferHostnameOverIp) {
                 InetAddress inetAddress = null;
                 try {
@@ -96,6 +95,7 @@ public class InetUtils {
                 selfIp = findFirstNonLoopbackAddress().getHostAddress();
             }
         }
+        System.out.println("get nacos local ip:" + selfIp);
     }
 
     public static String getSelfIp() {

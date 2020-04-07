@@ -25,7 +25,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
 import java.util.Properties;
 
 /**
@@ -47,7 +46,6 @@ public class ReloadableConfigs {
     @Scheduled(fixedRate = 5000)
     public void reload() throws IOException {
         // 每5秒加载一次配置文件
-        System.out.println("nacos-core reload() start..." + new Date());
         Properties properties = new Properties();
         InputStream inputStream = null;
         if (StringUtils.isNotBlank(path) && path.contains(FILE_PREFIX)) {

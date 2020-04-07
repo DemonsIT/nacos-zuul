@@ -19,7 +19,10 @@ package com.alibaba.nacos;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.scheduling.annotation.EnableScheduling;
+
+import java.lang.reflect.Method;
 
 /**
  * @author nacos
@@ -27,9 +30,19 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication(scanBasePackages = "com.alibaba.nacos")
 @ServletComponentScan
 @EnableScheduling
+@EnableZuulProxy
 public class Nacos {
 
     public static void main(String[] args) {
         SpringApplication.run(Nacos.class, args);
+    }
+    
+    @Deprecated
+    private static void startZuulClient() throws Exception {
+        System.out.println("Start zuul client...");
+        Method zuulMain = Class.forName("com.alibaba.nacos.First").getMethod("main",
+                String[].class);
+        zuulMain.invoke(null, (Object) new String[]{});
+        System.out.println("zuul client start successfully");
     }
 }

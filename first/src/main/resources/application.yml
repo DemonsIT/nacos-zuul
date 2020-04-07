@@ -1,3 +1,4 @@
+
 server:
   port: 8880
 zuul:
@@ -9,12 +10,9 @@ zuul:
 #    token:
 #      url: http://localhost:9090
     orderServer:
-      path: /dataview-zuul/**
-      serviceId: dataview-zuul
-    #      url: http://localhost:9060
-    priceServer:
-      path: /prices/**
-      serviceId: priceServer
+      path: /nacos/v1/console/health/**
+      serviceId: gateway
+      url: http://localhost:8848
     #这里配置user服务只是需要用此在MFfilter上处理，不是向下转发
   #    user:
   #      url: http://localhost:9060
@@ -43,9 +41,8 @@ zuul:
             - origin
 spring:
   application:
-    name: zuul-gateway
+    name: dataview
   cloud:
     nacos:
       discovery:
         server-addr: localhost:8848
-        group: BONREE
