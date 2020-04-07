@@ -23,8 +23,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import java.lang.reflect.Method;
-
 /**
  * @author nacos
  */
@@ -37,14 +35,5 @@ public class Nacos {
 
     public static void main(String[] args) {
         SpringApplication.run(Nacos.class, args);
-    }
-    
-    @Deprecated
-    private static void startZuulClient() throws Exception {
-        System.out.println("Start zuul client...");
-        Method zuulMain = Class.forName("com.alibaba.nacos.First").getMethod("main",
-                String[].class);
-        zuulMain.invoke(null, (Object) new String[]{});
-        System.out.println("zuul client start successfully");
     }
 }

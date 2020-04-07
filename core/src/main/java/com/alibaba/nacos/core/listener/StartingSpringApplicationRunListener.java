@@ -101,7 +101,6 @@ public class StartingSpringApplicationRunListener implements SpringApplicationRu
 
     @Override
     public void started(ConfigurableApplicationContext context) {
-        System.out.println("started method, set to false!");
         starting = false;
 
         if (scheduledExecutorService != null) {
@@ -138,7 +137,6 @@ public class StartingSpringApplicationRunListener implements SpringApplicationRu
     }
 
     private void logClusterConf() {
-        System.out.println("logClusterConf() start...");
         if (!STANDALONE_MODE) {
             try {
                 List<String> clusterConf = readClusterConf();
@@ -157,7 +155,6 @@ public class StartingSpringApplicationRunListener implements SpringApplicationRu
     }
 
     private void logStarting() {
-        System.out.println("logStarting() start...");
         if (!STANDALONE_MODE) {
 
             scheduledExecutorService = new ScheduledThreadPoolExecutor(1, new ThreadFactory() {

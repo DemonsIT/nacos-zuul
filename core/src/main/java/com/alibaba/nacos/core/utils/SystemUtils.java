@@ -107,9 +107,7 @@ public class SystemUtils {
         String nacosHome = System.getProperty(NACOS_HOME_KEY);
         if (StringUtils.isBlank(nacosHome)) {
             nacosHome = System.getProperty("user.home") + File.separator + "nacos";
-            System.out.println("nanosHome is empty, use user.home instead -> " + nacosHome);
         }
-        System.out.println("final nacosHome is:" + nacosHome);
         return nacosHome;
     }
 

@@ -443,7 +443,6 @@
         <module>console</module>
         <module>cmdb</module>
         <module>istio</module>
-        <module>first</module>
     </modules>
 
     <!-- 所有的子项目默认依赖 -->

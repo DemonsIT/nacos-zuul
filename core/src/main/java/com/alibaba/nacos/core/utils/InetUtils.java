@@ -95,7 +95,6 @@ public class InetUtils {
                 selfIp = findFirstNonLoopbackAddress().getHostAddress();
             }
         }
-        System.out.println("get nacos local ip:" + selfIp);
     }
 
     public static String getSelfIp() {

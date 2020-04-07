@@ -43,7 +43,6 @@ public class ConsoleConfig {
 
     @PostConstruct
     public void init() {
-        System.out.println("start PostConstruct init()...");
         methodsCache.initClassMethod("com.alibaba.nacos.naming.controllers");
         methodsCache.initClassMethod("com.alibaba.nacos.console.controller");
         methodsCache.initClassMethod("com.alibaba.nacos.config.server.controller");
@@ -51,7 +50,6 @@ public class ConsoleConfig {
 
     @Bean
     public CorsFilter corsFilter() {
-        System.out.println("start corsFilter()...");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
