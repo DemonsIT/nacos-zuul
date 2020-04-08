@@ -19,7 +19,6 @@ package com.alibaba.nacos;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
@@ -29,11 +28,12 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication(scanBasePackages = "com.alibaba.nacos")
 @ServletComponentScan
 @EnableScheduling
-@EnableDiscoveryClient
 @EnableZuulProxy
 public class Nacos {
 
     public static void main(String[] args) {
         SpringApplication.run(Nacos.class, args);
+        // TODO:读取nacos配置中心文件
+        
     }
 }
