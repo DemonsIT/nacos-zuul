@@ -51,7 +51,6 @@ public class TokenFilter extends ZuulFilter {
         String token = req.getHeader("token");
         // 4) 判断
         if (StringUtils.isBlank(token)) {
-            logger.warn("User token is empty, authentication fails!");
             // 没有token，登录校验失败，拦截
             ctx.setSendZuulResponse(false);
             ctx.setResponseBody(responseBody(token));
@@ -60,15 +59,16 @@ public class TokenFilter extends ZuulFilter {
             return ctx;
         }
         // 校验通过，可以考虑把用户信息放入上下文，继续向后执行
-        logger.debug("The user token is correct, the authentication is passed, and it can be forwarded!");
+        logger.debug("The user token:[{}] is correct, the authentication is passed, and it can be forwarded!", token);
         return null;
     }
     
     private String responseBody(String token) {
         JSONObject body = new JSONObject();
-        body.put("code", "8888");
+        body.put("code", "401");
         body.put("token", token);
         body.put("reason", "Illegal token, authentication failed, access denied!");
+        logger.debug("responseBody info:{}", body);
         return body.toJSONString();
     }
 }
