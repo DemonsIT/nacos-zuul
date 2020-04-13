@@ -1,7 +1,7 @@
 package com.alibaba.nacos.console.filter;
 
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.nacos.console.config.ZkConfig;
+import com.alibaba.nacos.console.service.TokenService;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import org.apache.commons.lang3.StringUtils;
@@ -12,8 +12,6 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author: Bonree
@@ -24,9 +22,7 @@ public class TokenFilter extends ZuulFilter {
     
     private static final Logger logger = LoggerFactory.getLogger(TokenFilter.class);
     
-    /** token缓存,K:token,V:用户名 */
-    private static Map<String, String> tokenCache = new ConcurrentHashMap<>();
-    private static final ZkConfig ZK_CONFIG = new ZkConfig();
+    private static final TokenService TOKEN_SERVICE = new TokenService();
     
     @Override
     public String filterType() {
@@ -57,7 +53,7 @@ public class TokenFilter extends ZuulFilter {
         String token = req.getHeader("token");
         String userName = req.getHeader("username");
         // 4) 判断
-        if (StringUtils.isBlank(token) || StringUtils.isBlank(userName) || !checkToken(userName, token)) {
+        if (StringUtils.isBlank(token) || StringUtils.isBlank(userName) || !TOKEN_SERVICE.checkToken(userName, token)) {
             // 没有token，登录校验失败，拦截
             ctx.setSendZuulResponse(false);
             ctx.setResponseBody(responseBody(userName, token));
@@ -68,27 +64,6 @@ public class TokenFilter extends ZuulFilter {
         // 校验通过，可以考虑把用户信息放入上下文，继续向后执行
         logger.debug("The user token:[{}] is correct, the authentication is passed, and it can be forwarded!", token);
         return null;
-    }
-    
-    private boolean checkToken(String userName, String token) {
-        // 同时校验用户名和token
-        logger.info("start checkToken, user:{}, token:{}", userName, token);
-        if (tokenCache.containsKey(token) && userName.equals(tokenCache.get(token))) {
-            // 鉴权通过
-            return true;
-        } else {
-            // 调接口查询
-            JSONObject response = ZK_CONFIG.queryToken(userName, token);
-            String errorCode = "errorCode";
-            int intValue = response.getIntValue(errorCode);
-            if (intValue == 0) {
-                // errorCode为0,说明鉴权通过
-                tokenCache.put(token, userName);
-                return true;
-            }
-            logger.info("check token fail, reason:{}", response);
-        }
-        return false;
     }
     
     private String responseBody(String userName, String token) {
