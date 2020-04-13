@@ -96,7 +96,7 @@ public class TokenFilter extends ZuulFilter {
         body.put("code", "4001");
         body.put("userName", userName);
         body.put("token", token);
-        body.put("reason", "Illegal token, authentication failed, access denied!");
+        body.put("reason", "Illegal username or token, authentication failed, access denied!");
         logger.debug("responseBody info:{}", body);
         return body.toJSONString();
     }
